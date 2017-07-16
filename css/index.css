@@ -272,6 +272,32 @@ body {
 	margin-top: 0px;
 }
 
+
+/*飘窗部分*/
+
+#piao {
+	width: 270px;
+	background: green;
+	z-index: 1000;
+	right: 2px;
+	top: 85px;
+	position: fixed;
+	visibility: visible;
+	display: block;
+}
+#piao h4{
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: bolder;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	cursor: pointer;
+	opacity: 0.6;
+}
+ #piao img{
+ 	width: 100%;
+ }
 @media only screen and (max-width: 991px) {
 	/*公共部分*/
 	.common_wai {
