@@ -15,15 +15,18 @@ window.onload = function() {
 			});
 		}
 	});
+	//飘窗功能	
 	//飘窗点击关闭
-	$("#closed").click(function(){
+	$("#closed").click(function() {
 		$("#piao").hide();
 	});
-
+	floatObj = document.getElementById("piao");
+	//飘窗开始
+	start();
 }
 
 //飘窗
-var floatObj = document.getElementById("piao");
+var floatObj;
 var xPos = 300;
 var yPos = 200;
 var step = 1;
@@ -35,15 +38,14 @@ var yon = 0;
 var xon = 0;
 var pause = true;
 var interval;
-floatObj.style.top = yPos;
 
 function changePos() {
-	width = document.body.clientWidth;
-	height = document.body.clientHeight;
+	width = $(window).width();
+	height = $(window).height();
 	Hoffset = floatObj.offsetHeight;
 	Woffset = floatObj.offsetWidth;
-	floatObj.style.left = xPos + document.body.scrollLeft+'px';
-	floatObj.style.top = yPos + document.body.scrollTop+'px';
+	floatObj.style.left = xPos + 'px';
+	floatObj.style.top = yPos + 'px';
 	if (yon) {
 		yPos = yPos + step;
 	} else {
@@ -75,6 +77,12 @@ function changePos() {
 function start() {
 	floatObj.visibility = "visible";
 	interval = setInterval('changePos()', delay);
+	floatObj.onmouseover = function() {
+		clearInterval(interval)
+	}
+	floatObj.onmouseout = function() {
+		interval = setInterval('changePos()', delay)
+	}
 }
 
 function pause_resume() {
@@ -85,11 +93,4 @@ function pause_resume() {
 		interval = setInterval('changePos()', delay);
 		pause = true;
 	}
-}
-start();
-floatObj.onmouseover = function() {
-	clearInterval(interval)
-}
-floatObj.onmouseout = function() {
-	interval = setInterval('changePos()', delay)
 }
